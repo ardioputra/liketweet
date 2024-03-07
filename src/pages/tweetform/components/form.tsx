@@ -33,6 +33,7 @@ export default function Form(props: FormikProps<FormValues>) {
         <button type="submit" disabled={isSubmitting}>
           Tweet
         </button>
+        <div></div>
       </form>
     </>
   );
