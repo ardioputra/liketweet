@@ -5,11 +5,10 @@ export default function Form(props: FormikProps<FormValues>) {
   const { values, errors, touched, handleChange, handleSubmit, isSubmitting } =
     props;
 
-    // Fungsi untuk menghitung jumlah karakter
-  const countCharacters = (text) => {
+  // Fungsi untuk menghitung jumlah karakter
+  const countCharacters = (text: string) => {
     return text.length;
   };
-
 
   return (
     <>
@@ -30,10 +29,8 @@ export default function Form(props: FormikProps<FormValues>) {
           className="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
           placeholder="Write your thoughts here..."
         ></textarea>
-           {/* Menampilkan jumlah karakter */}
-        <div>
-          Character Count: {countCharacters(values.tweet)}
-        </div>
+        {/* Menampilkan jumlah karakter */}
+        <div>Character Count: {countCharacters(values.tweet)} / 50</div>
         {/* <label htmlFor="Tweet">What are you gonna tweet today?</label>
         <input
 
