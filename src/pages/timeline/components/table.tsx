@@ -23,6 +23,8 @@ export default function Table() {
         return (
           <div key={tweet.id} className="bg-slate-600 p-4 rounded-md shadow-md">
             {tweet.tweet}
+            <button>Edit</button>
+            <button>Delete</button>
           </div>
         );
       })}
