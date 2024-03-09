@@ -1,20 +1,19 @@
 {
-  "tweet": [
+  "tweets": [
     {
       "id": "0",
+      "name": "budi",
       "tweet": "ini test tweets"
     },
     {
-      "id": "413b",
-      "tweet": "Hallo"
+      "id": "1a01",
+      "name": "a",
+      "tweet": "a"
     },
     {
-      "id": "b191",
-      "tweet": "test"
-    },
-    {
-      "id": "32df",
-      "tweet": "taweaeuwahuahduwa"
+      "id": "cec0",
+      "name": "sdasadasdasdsadsa",
+      "tweet": "sadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsadsa"
     }
   ]
 }
