@@ -4,6 +4,9 @@ import instance from "../../api/api_instance";
 import { withFormik } from "formik";
 import Form from "./components/form";
 import { useEffect, useState } from "react";
+import { Tweets } from "./types";
+import { set } from "../../redux/tweet";
+import { useAppDispatch } from "../../redux/hooks";
 
 const TweetSchema = Yup.object().shape({
   name: Yup.string().required("Perlu masukan nama!"),
@@ -12,35 +15,27 @@ const TweetSchema = Yup.object().shape({
     .max(50, "sudah lebih dari 50 karakter"),
 });
 
-interface Tweets {
-  id: number;
-  name: string;
-  tweet: string;
-}
-
 export default function TweetForm() {
-  const [tweet, setTweet] = useState<Tweets>();
+  const dispatch = useAppDispatch();
+
   const tweeting = async (props: FormValues) => {
     const { name, tweet } = props;
     await instance.post("tweets", {
       name,
       tweet,
     });
+    await fetchTweet();
   };
   // tidak perlu manggil id
   const fetchTweet = async () => {
     const { data } = await instance.get(`tweets`);
-    setTweet(data);
+    dispatch(set(data));
   };
-
-  useEffect(() => {
-    fetchTweet();
-  }, []);
 
   const FormTweet = withFormik<FormProps, FormValues>({
     mapPropsToValues: (props) => ({
-      name: props.initialName || tweet?.name || "",
-      tweet: props.initialTweet || tweet?.tweet || "",
+      name: props.initialName || "",
+      tweet: props.initialTweet || "",
     }),
     validationSchema: TweetSchema,
     enableReinitialize: true,
