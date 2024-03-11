@@ -1,17 +1,15 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import instance from "../../../api/api_instance";
-
-interface Tweets {
-  id: number;
-  name: string;
-  tweet: string;
-}
+import { useDispatch, useSelector } from "react-redux";
+import { set } from "../../../redux/tweet";
+import { useAppDispatch, useAppSelector } from "../../../redux/hooks";
 
 export default function Table() {
-  const [tweets, setTweets] = useState<Tweets[]>([]);
+  const dispatch = useAppDispatch();
+  const tweets = useAppSelector((state) => state.tweets.tweets);
   const fetchTweet = async () => {
     const { data } = await instance.get("tweets");
-    setTweets(data);
+    dispatch(set(data));
   };
 
   useEffect(() => {
@@ -23,9 +21,7 @@ export default function Table() {
       {tweets?.map((tweet) => {
         return (
           <div key={tweet.id} className="bg-slate-600 p-4 rounded-md shadow-md">
-            <div>@{tweet.name}</div>
-            "{tweet.tweet}"
-            <button>Edit</button>
+            <div>@{tweet.name}</div>"{tweet.tweet}"<button>Edit</button>
             <button>Delete</button>
           </div>
         );
