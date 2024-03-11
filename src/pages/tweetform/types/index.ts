@@ -7,3 +7,9 @@ export interface FormProps {
   initialName?: string;
   initialTweet?: string;
 }
+
+export interface Tweets {
+  id: number;
+  name: string;
+  tweet: string;
+}
